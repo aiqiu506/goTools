@@ -1,33 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"test/tool"
-)
-
-type S struct {
-	Id   int
-	Name string
-}
-type SS struct {
-	Ind   int
-	S
-	Title string
-}
-
-func (s S) SayTest() {
-	//	log.Fatalln(haha)og.Println("haha")
-}
-func (s S) FuncA() {
-	fmt.Println("A")
-	return
-}
-
-type ints interface {
-	FuncA()
-	// FuncB()
-}
-
+import "fmt"
 func main() {
 	//引用service包中的ReServer类型来创建reServer变量，目的是使reServer 变量可以调用RegisterServer方法来将该包的services类型的变量进行注入
 	/*reServer := &service.ReServer{
