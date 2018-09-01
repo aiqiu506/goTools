@@ -1,16 +1,22 @@
 package grqExport
 
 import (
-	"encoding/csv"
 	"reflect"
 	"errors"
+	"encoding/csv"
 )
 
+/**
+ csv导出操作对象
+ */
 type OutCsv struct {
 	Head interface{}
 	Data interface{}
 }
 
+/*
+   返回 标题行对象的名称和字段名
+ */
 func (o *OutCsv) getHead() ([]string, []string, error) {
 	var headTitle, headField []string
 	t := reflect.TypeOf(o.Head)
@@ -23,7 +29,9 @@ func (o *OutCsv) getHead() ([]string, []string, error) {
 	}
 	return headTitle, headField, nil
 }
-
+/*
+   返回 标题行对象的名称和字段名
+ */
 func (o *OutCsv) getBody() ([]map[string]string, error) {
 	v := reflect.ValueOf(o.Data)
 	vHead := reflect.ValueOf(o.Head)
@@ -45,12 +53,16 @@ func (o *OutCsv) getBody() ([]map[string]string, error) {
 	return eles, nil
 
 }
-
+/**
+  写入标题行
+ */
 func (o *OutCsv) WriteHead(writer *csv.Writer) {
 	headTitle, _, _ := o.getHead()
 	writer.Write(headTitle)
 }
-
+/**
+  内容写入csv文件中
+ */
 func (o *OutCsv) WriteBody(writer *csv.Writer) {
 	_, headField, _ := o.getHead()
 	csvBody, _ := o.getBody()
