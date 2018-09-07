@@ -5,6 +5,6 @@ import "fmt"
 type DoThing struct {
 }
 
-func (server *DoThing) FunOne(){
+func (server *DoThing) SayHello() {
 	fmt.Println("Server FunOne")
 }
